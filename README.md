@@ -1,14 +1,16 @@
-# Git Learning Repository for Arduino Projects
+# Monitoring Traffic Using Arduino
 
-This repository is designed to help you learn and practice Git fundamentals while working with Arduino projects. As a student, you'll clone this repository, create your own, and document your projects according to the specifications.
+This project aims to monitor traffic in a given area using the Arduino platform. The area's density is assessed using Arduino sensors, which determine the frequency of people walking by, as well the area's sound intensity.
+
+## Overview and Features
+- 
 
 ## Getting Started
 
 ### Prerequisites
-- Git installed on your computer
-- A GitHub account
-- Arduino IDE installed (https://www.arduino.cc/en/software)
-- Basic understanding of Arduino programming
+- Arduino IDE installed
+- VS code installed (or equivalent)
+- Basic understanding of Python
 
 ### Step 1: Clone this repository
 ```bash
@@ -112,6 +114,12 @@ The `templates` directory contains helpful examples:
 - Sample project structure
 - README template
 - Markdown syntax guide
+
+## Acknowledgments
+
+- Person or resource 1
+- Person or resource 2
+- Inspiration 
 
 ## Resources
 
