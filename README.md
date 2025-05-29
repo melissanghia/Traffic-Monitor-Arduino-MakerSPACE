@@ -9,13 +9,14 @@ This project aims to monitor traffic in a given area using the Arduino platform.
 
 ### Prerequisites
 - Arduino IDE installed
-- VS code installed (or equivalent)
-- Basic understanding of Python
+- VS Code installed (or equivalent)
+- Basic understanding of Arduino programming
+- Basic understanding of Python language
 
 ### Step 1: Clone this repository
 ```bash
-git clone https://github.com/jtrudeau/arduinogitresource2025.git
-cd arduinogitresource2025
+git clone https://github.com/melissanghia/Traffic-Monitor-Arduino-MakerSPACE.git
+cd melissanghia
 ```
 
 ### Step 2: Create your own repository
