@@ -6,7 +6,7 @@ This project aims to monitor traffic in a given area using the Arduino platform.
 Main features:
 - Measuring the frequency of passersby.
 - Determining the relative sound intensity of the area.
-- Measuring the area's vibrations.
+- Measuring the area's vibrations, which helps determine if anynone has tampered with the experiment (when left in a public area).
 
 ## Getting Started
 
@@ -64,6 +64,7 @@ cd melissanghia
 | A4      | SDA (Accelerometer) | 
 | A5     | SCL  (Accelerometer)| 
 
+### Step 4: Connect the Arduino to a power source and start data logging!
 
 ## Code Explanation Part 1: Data logging
 Refer to [data logging sketch](/code/datalogging_sketch.ino).
@@ -171,19 +172,109 @@ void loop() {
   }
 }
 ```
+
+
 ## Code Explanation Part 2: Data Analysis
+See [full Data Analysis code (with comments)](/code/data_analysis_code.ipynb).
 
+To start data analysis, create a dataframe from the CSV document.
+```python
+filename = "< Insert file name here>.CSV"
+df = pd.read_csv(filename)
+```
 
+To determine the frequency of passersby, we count how many times—in a given interval—the distance measured by the sensor is smaller than the distance to the wall.
+```python
+count_dist = []
+time_list = []
+start_index = 0
+start_time = df.loc[start_index, "Time(ms)"]
 
+# convert the "Time(ms)" column to a numpy array (for speed)
+times = df["Time(ms)"].values
+distances = df["Distance(cm)"].values
 
+# count how many times the distance is smaller than the width of the hallway (170cm), in a given interval
+for row in range(len(df)):
+    end_time = times[row]
+    
+    if end_time - start_time > 300000:  # time interval (in ms): 5 seconds
+        window_dist = distances[start_index:row+1]
+        counter = (window_dist < 168).sum()
+        count_dist.append(counter)
+        time_list.append(end_time)
+        
+        start_index = row+2
+        start_time = times[start_index]
+```
+To get a visual representation of the frequency of passersby:
+```python
+plt.figure(figsize=(10, 5))  # adjust size of graph
+plt.plot(time_list,count_dist)
 
+# add labels and title
+plt.xlabel("Time (ms)")
+plt.ylabel("Frequency of people walking by")
+plt.title("Frequency of people walking by (in a 5s interval)")
+plt.show()
+```
 
-## Usage Instructions
+To determine the sound intensity level, and its variations over the period of the experiment, we proceed in the same way: by counting how many times—in a given interval—the sound level surpasses a threshold value.
+```python
+count_sound = []
+time_list = []
+start_index = 0
+start_time = df.loc[start_index, "Sound"]
 
-1. [Step 1]
-2. [Step 2]
-3. [Step 3]
-4. [Additional steps...]
+# convert the "Time(ms)" column to a numpy array
+sound_values = df["Sound"].values
+
+# count how many tim
+for row in range(len(df)):
+    end_time = times[row]
+    
+    if end_time - start_time > 300000:    # time interval: 5 seconds   
+        window_sound = sound_values[start_index:row+1]
+        counter = (window_sound > 500).sum()    # threshold sound intensity value
+        count_sound.append(counter)
+        time_list.append(end_time)
+        
+        start_index = row+2
+        start_time = times[start_index]
+```
+To visualize the sound intensity variations, use the same code for plotting the frequency of passersby.
+
+Again, we proceed the same way for the 3 accelerations (x, y, z). The following code is for the analysis of the acceleration in x only:
+
+First, we find the value that corresponds to no acceleration (which we will call the <em>default</em>) by searching through the dataframe and finding the value that appears most often. Note that the value measured by the sensor that corresponds to no acceleration is not zero (perhaps due to a calibration issue).
+```python
+default_AX = df['AX'].value_counts().idxmax()
+```
+We then count how many times—in a given interval—the acceleration measured differs greatly from the default one (i.e., how many times the acceleration detected is very large).
+```python
+count_AX = []
+time_list = []
+start_index = 0
+start_time = df.loc[start_index, "AX"]
+
+# convert the "Time(ms)" column to a numpy array for speed
+AX_values = df["AX"].values
+
+# count how many vibrations in a given interval (i.e., how many times the acceleration detected is very large)
+for row in range(len(df)):
+    end_time = times[row]
+    
+    if end_time - start_time > 30000:                   # time interval: 5 seconds  
+        window_AX = AX_values[start_index:row+1]
+        counter = (window_AX < (default_AX-500)).sum()
+        counter = counter + (window_AX > (default_AX+500)).sum()
+        count_AX.append(counter)
+        time_list.append(end_time)
+        
+        start_index = row+2
+        start_time = times[start_index]
+```
+Use the plotting code mentioned previously to visualize the variations in accelerations throughout the experiment.
 
 ## Troubleshooting
 
