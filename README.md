@@ -33,11 +33,8 @@ Main features:
 - Breadboard
 - Jumper wires
 
-## Installation
-```bash
-git clone https://github.com/melissanghia/Traffic-Monitor-Arduino-MakerSPACE.git
-cd melissanghia
-```
+## Instructions
+
 
 ### Step 1: Install necessary libraries in the Arduino IDE
 1. Click on Sketch > Include Library > Manage Libraries...;
@@ -290,27 +287,16 @@ Use the plotting code mentioned previously to visualize the variations in accele
 - **No change in distance was observed on the serial monitor when an object/person has moved in front the ultrasonic sensor**: in the Arduino IDE sketch, adjust the sample rate to a lower value (i.e., print the distance at a quicker rate).
 
 
-
 ## Future Improvements
 - Changing the KY-038 Microphone Sound Sensor to a sensor with a wider range. *KY-038 only detects sound in a 50 cm range.
 - Incorporating a temperature or humidity sensor, to observe their variations as traffic in the area varies.
 
-## References
+## References and Resources
 
-- [Reference 1]
-- [Reference 2]
-- [Additional references...] 
-
-
-## Resources
-
-- [Git Documentation](https://git-scm.com/doc)
-- [GitHub Guides](https://guides.github.com/)
-- [Arduino Reference](https://www.arduino.cc/reference/en/)
 - [Dawson College Virtual Lab for Arduino Interns](https://englab.dawsoncollege.qc.ca/interns/Intro.html) 
+- [KY-038 Sound Sensor Code and Wiring Example](https://sensorkit.joy-it.net/en/sensors/ky-038)
+- [MPU6050 Accelerometer Guide](https://lastminuteengineers.com/mpu6050-accel-gyro-arduino-tutorial/)
+
 
 ## Acknowledgments
-
-- Person or resource 1
-- Person or resource 2
-- Inspiration 
+This experiment was carried out under the guidance of Joel Trudeau as part of the MakerSPACE Internship.
