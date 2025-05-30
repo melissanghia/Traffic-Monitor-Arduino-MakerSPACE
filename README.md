@@ -41,15 +41,20 @@ cd melissanghia
 
 ### Step 1: Install necessary libraries in the Arduino IDE
 1. Click on Sketch > Include Library > Manage Libraries...;
-2. In the search field, look for the following libraries;
+2. In the search field, look for the libraries mentioned in <em>Software Requirements</em>;
 3. Click on Install.
 
-### Step 2: Import code for data logging
+### Step 2: Install necessary libraries/extensions in VS Code
+1. From the <em>Extensions</em> search field, install the librairies mentioned in <em>Software Requirements</em>.
+
+### Step 3: Import code for data logging
 1. Import or copy/paste [data logging code](/code/datalogging_sketch.ino) into the Arduino IDE.
 
-### Step 3: Circuit diagram
+### Step 4: Circuit diagram
 - Replicate the circuit diagram:
+
 ![Circuit](/images/circuit_diagram.png?raw=true)
+*Don't forget to insert the SD card.
 
 ### Wiring instructions
 | Arduino Pin | Connected To | 
@@ -64,7 +69,7 @@ cd melissanghia
 | A4      | SDA (Accelerometer) | 
 | A5     | SCL  (Accelerometer)| 
 
-### Step 4: Connect the Arduino to a power source and start data logging!
+### Step 5: Connect the Arduino to a power source and start data logging!
 
 ## Code Explanation Part 1: Data logging
 Refer to [data logging sketch](/code/datalogging_sketch.ino).
@@ -264,7 +269,7 @@ AX_values = df["AX"].values
 for row in range(len(df)):
     end_time = times[row]
     
-    if end_time - start_time > 30000:                   # time interval: 5 seconds  
+    if end_time - start_time > 30000:  # time interval: 5 seconds  
         window_AX = AX_values[start_index:row+1]
         counter = (window_AX < (default_AX-500)).sum()
         counter = counter + (window_AX > (default_AX+500)).sum()
@@ -278,15 +283,17 @@ Use the plotting code mentioned previously to visualize the variations in accele
 
 ## Troubleshooting
 
-- **Issue 1**: [Solution]
-- **Issue 2**: [Solution]
-- **Issue 3**: [Solution]
+- **No sound detected by the sound sensor**: adjust the sensitivity or threshold at which the sensor detects sound by turning a small screw on the sensor module itself.
+
+![Potentiometer](/images/potentiometer.png?raw=true)
+
+- **No change in distance was observed on the serial monitor when an object/person has moved in front the ultrasonic sensor**: in the Arduino IDE sketch, adjust the sample rate to a lower value (i.e., print the distance at a quicker rate).
+
+
 
 ## Future Improvements
-
-- [Potential improvement 1]
-- [Potential improvement 2]
-- [Potential improvement 3]
+- Changing the KY-038 Microphone Sound Sensor to a sensor with a wider range. *KY-038 only detects sound in a 50 cm range.
+- Incorporating a temperature or humidity sensor, to observe their variations as traffic in the area varies.
 
 ## References
 
