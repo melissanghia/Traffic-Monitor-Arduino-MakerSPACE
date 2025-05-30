@@ -30,7 +30,7 @@ int16_t ax, ay, az;
 const int chipSelect = 10;
 // File for data logging
 File dataFile;
-String fileName = "mtest.CSV";
+String fileName = "data_may9.CSV";
 
 
 
