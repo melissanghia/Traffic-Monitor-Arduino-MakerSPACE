@@ -6,7 +6,9 @@ This project aims to monitor traffic in a given area using the Arduino platform.
 Main features:
 - Measuring the frequency of passersby.
 - Determining the relative sound intensity of the area.
-- Measuring the area's vibrations, which helps determine if anynone has tampered with the experiment (when left in a public area).
+- Measuring the area's vibrations (with an accelerometer), which helps determine if anynone has tampered with the experiment (when left in a public area).
+
+For a complete example of monitoring traffic using Arduino (at Dawson College), see [data collected on May 9th](/code%20&%20data/data_may9.CSV). Results (graphs of frequency of passersby, sound intensity variations, and acceleration variations) are displayed in [Data analysis](/code%20&%20data/data_analysis_code.ipynb).
 
 ## Getting Started
 
