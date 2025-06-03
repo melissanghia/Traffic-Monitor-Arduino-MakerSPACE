@@ -34,6 +34,7 @@ For a complete example of monitoring traffic using Arduino (at Dawson College), 
 - Arduino Uno
 - Breadboard
 - Jumper wires
+- 5V Power source (computer, battery pack, etc...)
 
 ## Instructions
 
@@ -47,7 +48,7 @@ For a complete example of monitoring traffic using Arduino (at Dawson College), 
 1. From the <em>Extensions</em> search field, install the librairies mentioned in <em>Software Requirements</em>.
 
 ### Step 3: Import code for data logging
-1. Import or copy/paste [data logging code](/code/datalogging_sketch.ino) into the Arduino IDE.
+1. Import or copy/paste [data logging code](/code%20&%20data/datalogging_sketch.ino) into the Arduino IDE.
 
 ### Step 4: Circuit diagram
 - Replicate the circuit diagram:
@@ -71,7 +72,7 @@ For a complete example of monitoring traffic using Arduino (at Dawson College), 
 ### Step 5: Connect the Arduino to a power source and start data logging!
 
 ## Code Explanation Part 1: Data logging
-Refer to [data logging sketch](/code/datalogging_sketch.ino).
+Refer to [data logging sketch](/code%20&%20data/datalogging_sketch.ino).
 
 1. First, initialize variables, pin modes, as well as the SD card and the MPU6050.
 ```arduino
@@ -179,7 +180,7 @@ void loop() {
 
 
 ## Code Explanation Part 2: Data Analysis
-See [full Data Analysis code (with comments)](/code/data_analysis_code.ipynb).
+See [full Data Analysis code (with comments)](/code%20&%20data/data_analysis_code.ipynb).
 
 To start data analysis, create a dataframe from the CSV document.
 ```python
@@ -282,7 +283,7 @@ Use the plotting code mentioned previously to visualize the variations in accele
 
 ## Troubleshooting
 
-- **No sound detected by the sound sensor**: adjust the sensitivity or threshold at which the sensor detects sound by turning a small screw on the sensor module itself.
+- **No sound detected by the sound sensor**: adjust the sensitivity or threshold at which the sensor detects sound by turning a small screw on the sensor module itself (potentiometer).
 
 ![Potentiometer](/images/potentiometer.png?raw=true)
 
@@ -292,9 +293,10 @@ Use the plotting code mentioned previously to visualize the variations in accele
 ## Future Improvements
 - Changing the KY-038 Microphone Sound Sensor to a sensor with a wider range. *KY-038 only detects sound in a 50 cm range.
 - Incorporating a temperature or humidity sensor, to observe their variations as traffic in the area varies.
+- Expand this experiment to multiple areas at once, and display the density of each area in real-time. Perhaps on an OLED display or some other type of screen.
 
 ## References and Resources
-
+- [Cirkit Designer IDE](https://app.cirkitdesigner.com/project)
 - [Dawson College Virtual Lab for Arduino Interns](https://englab.dawsoncollege.qc.ca/interns/Intro.html) 
 - [KY-038 Sound Sensor Code and Wiring Example](https://sensorkit.joy-it.net/en/sensors/ky-038)
 - [MPU6050 Accelerometer Guide](https://lastminuteengineers.com/mpu6050-accel-gyro-arduino-tutorial/)
